@@ -1,5 +1,23 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+import { mapActions } from 'pinia';
+import userStore from '@/stores/userStore.js'
+import { onMounted, ref } from 'vue'
+
+  const users = ref([])
+  //const userStore = userStore()
+  //const actions = ...mapActions(UserStore, ['fetchUser'])
+
+  export default {
+  setup() {
+    const { fetchUsers } = mapActions(userStore, ['fetchUsers']);
+    console.log('1');
+    onMounted(() => {
+      fetchUsers();
+    });
+  }
+}
+
 </script>
 
 <template>
@@ -7,6 +25,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/auth/sign-up">Sign Up</RouterLink>
+        <RouterLink to="/auth/sign-in">Sign In</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
@@ -51,10 +71,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
