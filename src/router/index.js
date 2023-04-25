@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { authGuard } from '@/guards/auth';
 import HomeView from '../views/HomeView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SignInView from '@/views/SignInView.vue'
-import UserStore from '@/stores/userStore.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,32 +10,24 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      meta: { requiresAuth: true },
       component: HomeView
     },
     {
       path: '/sign-up',
       name: 'signUp',
+      meta: { requiresAuth: false },
       component: SignUpView
     },
     {
       path: '/sign-in',
       name: 'signIn',
+      meta: { requiresAuth: false },
       component: SignInView
     } 
   ]
 })
 
-router.beforeEach((to) => {
-  const userUserStore = UserStore();
-  const isAuthenticated = userUserStore.user !== null;
-  
-  console.log('user> '+userUserStore.user);
-  console.log('isAuthenticated> '+isAuthenticated);
-  console.log('to.name> '+to.name);
-  
-  if (!isAuthenticated && to.name !== 'signIn' && to.name !== 'signUp') {    
-    return { name: 'signIn' }
-  }
-});
+router.beforeEach(authGuard);
 
 export default router

@@ -5,28 +5,27 @@
   <form @submit.prevent="handleSignIn">
     <input v-model="email" type="email" required>
     <input v-model="password" type="password" required>
-    <button type="submit">Iniciar sesión</button>
+    <button type="submit">Sign In</button>
   </form>
+  <RouterLink to="/sign-up" />
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
-import { signIn } from '@/supabase'
+import { RouterLink } from 'vue-router';
+import useAuthStore  from '@/stores/auth';
+import router from '../router';
 
-export default {
-  setup() {
-    const email = ref('')
-    const password = ref('')
+const authStore = useAuthStore();
+const email = ref('')
+const password = ref('')
 
-    const handleSignIn = async () => {
-      try {
-        await signIn(email.value, password.value)
-      } catch (error) {
-        console.log('Error on sign in process:', error)
-      }
-    }
-
-    return { email, password, handleSignIn }
+const handleSignIn = async () => {
+  try {
+    await authStore.signIn(email.value, password.value)
+    router.push('/');
+  } catch (error) {
+    console.log('Error on sign in process:', error);
   }
 }
 </script>

@@ -1,12 +1,3 @@
-<script>
-import { RouterLink, RouterView } from 'vue-router'
-import UserStore from '@/stores/userStore.js'
-import { mapActions } from 'pinia';
-
-  const users = mapActions(UserStore, ['fetchUser'])
-  console.log('users :' + users)
-</script>
-
 <template>
   <header>
     <div class="wrapper">
@@ -20,6 +11,10 @@ import { mapActions } from 'pinia';
 
   <RouterView />
 </template>
+
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'  
+</script>
 
 <style scoped>
 header {

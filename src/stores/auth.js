@@ -1,35 +1,32 @@
 import { defineStore } from 'pinia'
-import supabase from '@/supabase';
-/*
-export default defineStore('user', {
-    state: () => {
-        return {
-            user: null,
-        }
-    },
-    actions: {
-        async fetchUser() {
-            const { data: { user } } = await supabase.auth.getUser()
-            this.user = user
-        }
-    }    
-});
-*/
+import supabase from '@/supabase'
 
-export const useAuthStore = defineStore('auth', {
+export default defineStore('auth', {
   state: () => ({
-    user: null,
+    currentUser: null,
     session: null,
     error: null
   }),
   actions: {
+    async loadUser() {
+      //const { data: { user } } = await supabase.auth.getUser();
+      console.log('loadUser')
+      const { data, error } = await supabase.auth.getSession();
+      const { session, user } = data
+      console.log(`session: ${session}`)
+      console.log(`user: ${user}`)
+      if (error) {
+        throw error
+      }
+      this.currentUser = user;
+    },
     async signIn(email, password) {
       try {
+        console.log('auth->signIn')
         const { user, session, error } = await supabase.auth.signIn({
           email,
           password
         })
-
         if (error) {
           throw error
         }
@@ -43,14 +40,13 @@ export const useAuthStore = defineStore('auth', {
         this.error = error.message
       }
     },
-
     async signUp(email, password) {
       try {
+        console.log('auth->signUp')
         const { user, session, error } = await supabase.auth.signUp({
           email,
           password
         })
-
         if (error) {
           throw error
         }
@@ -64,21 +60,13 @@ export const useAuthStore = defineStore('auth', {
         this.error = error.message
       }
     },
-
     async signOut() {
-      try {
-        const { error } = await supabase.auth.signOut()
-
-        if (error) {
-          throw error
-        }
-
-        this.user = null
-        this.session = null
-      } catch (error) {
-        this.error = error.message
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        throw error
       }
+      this.user = null
+      this.session = null
     }
   }
-});
-
+})

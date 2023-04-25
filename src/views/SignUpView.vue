@@ -2,36 +2,27 @@
   <div>
     <h2>SignUp</h2>
   </div>
-  <form @submit.prevent="handleSignIn">
+  <form @submit.prevent="handleSignUp">
     <input v-model="email" type="email" required>
     <input v-model="password" type="password" required>
-    <button type="submit">Iniciar sesión</button>
+    <button type="submit">Sign Up</button>
   </form>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
-import { signUp } from '@/supabase'
+import useAuthStore  from '@/stores/auth';
 
-const { data, error } = await supabase.auth.signUp({
-  email: 'example@email.com',
-  password: 'example-password',
-})
+const authStore = useAuthStore();
+const email = ref('');
+const password = ref('');
 
-export default {
-  setup() {
-    const email = ref('')
-    const password = ref('')
-
-    const handleSignUn = async () => {
-      try {
-        await signUp(email.value, password.value)
-      } catch (error) {
-        console.log('Error on sign up process:', error)
-      }
-    }
-
-    return { email, password, handleSignUn }
+const handleSignUp = async () => {
+  try {
+    console.log('handleSignUp');
+    await authStore.signUp(email.value, password.value);
+  } catch (error) {
+    console.log('Error on sign up process:', error);
   }
 }
 </script>
