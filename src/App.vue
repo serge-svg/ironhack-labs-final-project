@@ -1,19 +1,22 @@
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/sign-up">Sign Up</RouterLink>
-        <RouterLink to="/sign-in">Sign In</RouterLink>
-      </nav>
+  <div class="flex justify-center items-center h-screen">
+    <div class="space-x-4">
     </div>
-  </header>
-
+    <header>
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/sign-up">Sign Up</RouterLink>
+          <RouterLink to="/sign-in">Sign In</RouterLink>
+        </nav>
+      </div>
+    </header>
   <RouterView />
+  </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'  
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <style scoped>
