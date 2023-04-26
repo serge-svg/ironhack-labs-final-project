@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { authGuard } from '@/guards/auth';
+import { authGuard } from '@/guards/auth'
 import HomeView from '../views/HomeView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SignInView from '@/views/SignInView.vue'
@@ -24,10 +24,10 @@ const router = createRouter({
       name: 'signIn',
       meta: { requiresAuth: false },
       component: SignInView
-    } 
+    }
   ]
 })
 
-router.beforeEach(authGuard);
+router.beforeEach(authGuard)
 
 export default router

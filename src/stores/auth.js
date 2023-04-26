@@ -11,14 +11,14 @@ export default defineStore('auth', {
     async loadUser() {
       //const { data: { user } } = await supabase.auth.getUser();
       console.log('loadUser')
-      const { data, error } = await supabase.auth.getSession();
+      const { data, error } = await supabase.auth.getSession()
       const { session, user } = data
       console.log(`session: ${session}`)
       console.log(`user: ${user}`)
       if (error) {
         throw error
       }
-      this.currentUser = user;
+      this.currentUser = user
     },
     async signIn(email, password) {
       try {
