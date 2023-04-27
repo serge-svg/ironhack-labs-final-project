@@ -14,44 +14,36 @@ export default defineStore('user', {
     },
     async signIn(email, password) {
       try {
-        console.log('auth->signIn')
-        const { user, session, error } = await supabase.auth.signIn({
+        const { data: { user }, error } = await supabase.auth.signInWithPassword({
           email,
           password
         })
-        if (error) {
-          throw error
+        if (error) { 
+          throw error 
+        } else {
+          if (user) this.user = user
         }
-
-        this.user = user
-        this.session = session
-        this.error = null
       } catch (error) {
         this.user = null
-        this.session = null
         this.error = error.message
       }
     },
     async signUp(email, password) {
       try {
-        console.log('auth->signUp')
-        console.log(email)
-        console.log(password)
-        const { user, session, error } = await supabase.auth.signUp({
+        const { data: { user} , error } = await supabase.auth.signUp({
           email,
           password
         })
-        if (error) {
-          throw error
+
+        if (error) { 
+          throw error 
+        } else {
+          if (user) this.user = user
         }
 
-        this.user = user
-        this.session = session
-        this.error = null
       } catch (error) {
-        this.user = null
-        this.session = null
-        this.error = error.message
+        this.user = null;
+        this.error = error.message;
       }
     },
     async signOut() {
