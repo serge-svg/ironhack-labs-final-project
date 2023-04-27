@@ -15,10 +15,7 @@ export default defineStore({
         if (error) {
           console.error(error);
         } else {
-          debugger
-          console.log(`data: ${data}`)          
           this.tasksList = data;
-          console.log(`this.tasksList: ${this.tasksList}`)          
         }
         return this.tasksList;
       }
