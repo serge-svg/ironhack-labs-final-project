@@ -1,24 +1,17 @@
 import { defineStore } from 'pinia'
 import supabase from '@/supabase'
 
-export default defineStore('auth', {
+export default defineStore('user', {
   state: () => ({
-    currentUser: null,
-    session: null,
-    error: null
+    currentUser: null
   }),
   actions: {
-    async loadUser() {
-      //const { data: { user } } = await supabase.auth.getUser();
-      console.log('loadUser')
-      const { data, error } = await supabase.auth.getSession()
-      const { session, user } = data
-      console.log(`session: ${session}`)
+    async fetchUser() {
+      console.log('fetchUser');
+      debugger
+      const { data: { user } } = await supabase.auth.getUser();
       console.log(`user: ${user}`)
-      if (error) {
-        throw error
-      }
-      this.currentUser = user
+      this.currentUser = user;
     },
     async signIn(email, password) {
       try {
