@@ -8,7 +8,6 @@ export default defineStore('user', {
   actions: {
     async fetchUser() {
       console.log('fetchUser');
-      debugger
       const { data: { user } } = await supabase.auth.getUser();
       console.log(`user: ${user}`)
       this.currentUser = user;
@@ -36,6 +35,8 @@ export default defineStore('user', {
     async signUp(email, password) {
       try {
         console.log('auth->signUp')
+        console.log(email)
+        console.log(password)
         const { user, session, error } = await supabase.auth.signUp({
           email,
           password

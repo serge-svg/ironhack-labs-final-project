@@ -3,8 +3,8 @@
     <h2>List of tasks</h2>
   
     <ul>
-      <li v-for="item in tasks" :key="item.id">
-        {{ item.title }}
+      <li v-for="task in tasks" :key="task.id">
+        {{ task.title }}
       </li>
     </ul>   
 
@@ -12,14 +12,18 @@
 </template>
 
 <script setup>
-
 import useTaskStore from "@/stores/task";
 import { ref } from 'vue';
-const tasks = ref([])
-const taskStore = useTaskStore();
-tasks.value = taskStore.fetchTasks();
 
-console.log(`tasks: ${tasks}`)
+  const tasks = ref([])
+  const taskStore = useTaskStore();
+
+  async function getTask(){
+    tasks.value = await taskStore.fetchTasks();
+  }
+
+  getTask();
+
 </script>
 
   

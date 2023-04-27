@@ -10,14 +10,17 @@ export default defineStore({
       async fetchTasks() {
         const { data, error } = await supabase
           .from('tasks')
-          .select()
+          .select('*')
 
         if (error) {
           console.error(error);
         } else {
+          debugger
+          console.log(`data: ${data}`)          
           this.tasksList = data;
-          console.log(data);
+          console.log(`this.tasksList: ${this.tasksList}`)          
         }
+        return this.tasksList;
       }
     }
 });
