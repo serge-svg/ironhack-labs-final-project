@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/tasks-list',
       name: 'tasks',
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
       component: TasksListView
     }
   ]
