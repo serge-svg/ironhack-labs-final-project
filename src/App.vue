@@ -6,9 +6,10 @@
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/sign-up">Sign Up</RouterLink>
-          <RouterLink to="/sign-in">Sign In</RouterLink>
-          <RouterLink to="/tasks-list">Tasks</RouterLink>
+          <RouterLink to="/sign-up" v-if="!authStore.currentUser">Sign Up</RouterLink>
+          <RouterLink to="/sign-in" v-if="!authStore.currentUser">Sign In</RouterLink>
+          <RouterLink to="/tasks-list" v-if="authStore.currentUser">Tasks</RouterLink>
+          <button v-if="authStore.currentUser" @click="signOut">Sign out</button>
         </nav>
       </div>
     </header>
@@ -18,6 +19,13 @@
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import useAuthStore from '@/stores/user'
+
+const authStore = useAuthStore();
+
+function signOut() {
+  authStore.signOut();
+}
 </script>
 
 <style scoped>
