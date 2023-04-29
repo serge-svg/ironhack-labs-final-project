@@ -15,6 +15,7 @@ export default defineStore({
         if (error) {
           console.error(error);
         } else {
+          console.log(`tasks: ${data.length}`);
           this.tasksList = data;
         }
         return this.tasksList;
