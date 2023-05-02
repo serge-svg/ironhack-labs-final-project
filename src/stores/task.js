@@ -15,10 +15,25 @@ export default defineStore({
         if (error) {
           console.error(error);
         } else {
-          console.log(`tasks: ${data.length}`);
           this.tasksList = data;
         }
         return this.tasksList;
-      }
+      },
+      async add(task) {
+        try {
+          console.log(`add task: ${task}`);
+          console.log(`title: ${task.title}`);
+          console.log(`user_id: ${task.user_id}`);
+          // Guarda la tarea en Supabase
+          const { data, error } = await supabase.from('tasks').insert([task]);
+          if (error) {
+            throw error;
+          }
+          // Agrega la tarea a la lista de tareas en el estado
+          this.tasks.push(data[0]);
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }
 });

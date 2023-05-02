@@ -1,12 +1,12 @@
 <template>
   <div class="tasks">
-    <h2>List of tasks</h2>
-    <h5>Taskscounter:</h5> {{ tasks.length }}
-    <Task v-for="(task, index) in tasks" :key="index"
-      :timestamp="task.timestamp"
-      :message="task.message"
+    <div to-do-items>
+      <p v-if="tasks.length === 0">No items to display.</p>
+      <Task v-for="(task, index) in tasks" :key="index"
+      :message="task.title"
+      :timestamp="task.inserted_at"
       />
-
+    </div>
   </div>
 </template>
 
@@ -25,5 +25,3 @@ import { ref } from 'vue';
   getTask();
 
 </script>
-
-  

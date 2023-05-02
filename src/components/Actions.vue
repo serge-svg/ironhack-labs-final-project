@@ -1,5 +1,3 @@
-<script setup>
-</script>
 <template>
    <div class="actions">
     <!-- Font Awesome icons -->
@@ -9,3 +7,5 @@
   </div>
 </template>
 
+<script setup>
+</script>

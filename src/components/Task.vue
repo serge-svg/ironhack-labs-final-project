@@ -5,17 +5,18 @@
                 <Message :message="message" />
                 <Timestamp :timestamp="timestamp" />
             </div>
-            <Actions />
+            <Actions/>
         </div>
     </div>
 </template>
 
 <script setup>
-import Message from '@/components/Message.vue'
-import Timestamp from '@/components/Timestamp.vue'
+    import Message from '@/components/Message.vue'
+    import Timestamp from '@/components/Timestamp.vue'
+    import Actions from '@/components/Actions.vue'
 
-const props = defineProps({
-    timestamp: String,
-    message: String
-});
+    const props = defineProps({
+        timestamp: String,
+        message: String
+    });
 </script>
