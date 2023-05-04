@@ -18,6 +18,21 @@ export default defineStore({
           this.tasksList = data;
         }
         return this.tasksList;
-      }
+      },
+      async add(task) {
+        try {
+          const { data, error } = await supabase
+          .from('tasks')
+          .insert([task])
+          .select()
+          debugger
+          if (error) { throw error; }
+          console.log(data);
+          this.tasksList.push(data[0]);          
+
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }
 });

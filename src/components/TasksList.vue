@@ -1,17 +1,17 @@
 <template>
   <div class="tasks">
-    <h2>List of tasks</h2>
-  
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
-        {{ task.title }}
-      </li>
-    </ul>   
-
+    <div to-do-items>
+      <p v-if="tasks.length === 0">No items to display.</p>
+      <Task v-for="(task, index) in tasks" :key="index"
+      :message="task.title"
+      :timestamp="task.inserted_at"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
+import Task from "@/components/Task.vue";
 import useTaskStore from "@/stores/task";
 import { ref } from 'vue';
 
@@ -25,5 +25,3 @@ import { ref } from 'vue';
   getTask();
 
 </script>
-
-  

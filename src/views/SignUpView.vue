@@ -1,14 +1,34 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <div class="space-x-4">
-      <h2 class="text-3xl mb-4 text-purple-500">Tasker</h2>    
-      <form @submit.prevent="handleSignUp" class="form-control w-full max-w-xs">
-        <input v-model="email" type="email" required placeholder="Enter email" class="input input-bordered input-accent w-full max-w-xs"/>
-        <input v-model="password" type="password" required placeholder="Enter password" class="input input-bordered input-accent w-full max-w-xs"/>
-        <button class="btn btn-primary" type="submit">Sign Up</button>
-      </form>
-    </div>    
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Register</h1>
+    </div>
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input v-model="email" type="email" required placeholder="email" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input v-model="password" type="password" required placeholder="password" class="input input-bordered" />
+          <label class="label">
+            <span class="label-text">Repite Password</span>
+          </label>
+          <input v-model="password2" type="password" required placeholder="password" class="input input-bordered" />
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary">Sign up</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -21,10 +41,8 @@ const password = ref('')
 
 const handleSignUp = async () => {
   try {
-    console.log('handleSignUp')
     await authStore.signUp(email.value, password.value)
   } catch (error) {
-    console.log('Error on sign up process:', error)
   }
 }
 </script>

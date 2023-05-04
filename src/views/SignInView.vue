@@ -1,15 +1,36 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <div class="space-x-4">
-      <h2 class="text-3xl mb-4 text-purple-500">Tasker</h2>    
-      <form @submit.prevent="handleSignIn" class="form-control w-full max-w-xs">
-        <input v-model="email" type="email" required placeholder="Enter email" class="input input-bordered input-accent w-full max-w-xs"/>
-        <input v-model="password" type="password" required placeholder="Enter password" class="input input-bordered input-accent w-full max-w-xs"/>
-        <button class="btn btn-primary" type="submit">Sign In</button>
-      </form>
-    </div>    
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Login</h1>
+    </div>
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <form @submit.prevent="handleSignIn">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input v-model="email" type="email" required placeholder="email" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input v-model="password" type="password" required placeholder="password" class="input input-bordered" />
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+          </label>
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </form>
+    </div>
   </div>
-  <RouterLink to="/sign-up" />
+</div>
+<RouterLink to="/sign-up" />
 </template>
 
 <script setup>
