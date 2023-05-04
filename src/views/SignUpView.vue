@@ -41,10 +41,8 @@ const password = ref('')
 
 const handleSignUp = async () => {
   try {
-    console.log('handleSignUp')
     await authStore.signUp(email.value, password.value)
   } catch (error) {
-    console.log('Error on sign up process:', error)
   }
 }
 </script>

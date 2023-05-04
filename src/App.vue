@@ -21,10 +21,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import useAuthStore from '@/stores/user'
+import router from '@/router'
 
 const authStore = useAuthStore();
 
 function signOut() {
   authStore.signOut();
+  router.push('/')
 }
 </script>

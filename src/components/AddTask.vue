@@ -13,16 +13,13 @@
   const authStore = useAuthStore()
   const taskStore = useTaskStore();
   const title = ref('')
-  debugger
-  const user_id = ref(authStore.currentUser);
-  const task = ref({title, user_id});
-  
-
+    
   const handleAddTask = async () => {
-
-    console.log(`user_id: ${user_id.value}`)
+    const user_id = ref(authStore.currentUser.id);
+    const task = ref({title, user_id});
     try {
-        await taskStore.add(task.value)
+        await taskStore.add(task.value);
+        title.value = '';        
     } catch (error) {
         console.log('Error creating a task:', error)
     }
