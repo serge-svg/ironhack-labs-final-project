@@ -12,27 +12,31 @@ export default defineStore({
           .from('tasks')
           .select('*')
 
-        if (error) {
-          console.error(error);
-        } else {
-          this.tasksList = data;
-        }
+        if (error) { throw error; }
+        
+        this.tasksList = data;
+  
         return this.tasksList;
       },
       async add(task) {
-        try {
-          const { data, error } = await supabase
+        const { data, error } = await supabase
           .from('tasks')
           .insert([task])
           .select()
-          debugger
+          
           if (error) { throw error; }
-          console.log(data);
-          this.tasksList.push(data[0]);          
 
-        } catch (error) {
-          console.error(error);
-        }
+          this.tasksList.push(data[0]);          
       },
+      async delete(id, taskIndex) {
+        const { error } = await supabase
+        .from('tasks')
+        .delete()
+        .eq('id', id)
+
+        if (error) { throw error; }
+        
+        this.tasksList.splice(taskIndex, 1);
+      }
     }
 });

@@ -2,10 +2,16 @@
   <div class="tasks">
     <div to-do-items>
       <p v-if="tasks.length === 0">No items to display.</p>
-      <Task v-for="(task, index) in tasks" :key="index"
-      :message="task.title"
-      :timestamp="task.inserted_at"
-      />
+
+      <div v-for="(task, index) in tasks" :key="index" >     
+        <Task 
+        :taskIndex="index"
+        :message="task.title"
+        :timestamp="task.inserted_at"
+        :id="task.id"            
+        />
+        >>>>{{ index }}!!!
+      </div>
     </div>
   </div>
 </template>
