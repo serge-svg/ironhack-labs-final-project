@@ -37,6 +37,17 @@ export default defineStore({
         if (error) { throw error; }
         
         this.tasksList.splice(taskIndex, 1);
+      },
+      async update(message) {
+        const { error } = await supabase
+        .from('tasks')
+        .update({ title: message })
+        .eq('id', task.id)
+
+        if (error) { throw error; }
+        
+        console.log(task.id);
+        
       }
     }
 });

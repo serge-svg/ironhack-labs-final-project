@@ -1,14 +1,13 @@
 <template>
-    <div class="task">
-        <div class="body">
-            <div class="top">
-                <Timestamp :timestamp="timestamp" />
-            </div>
-
+    <div class="flex flex-col">
+        <div class="flex-row">             
+            <Timestamp :timestamp="timestamp" />
+        </div>
+        <div class="flex-row">
+          <span class="flex gap-4">
             <Message :message="message" />
-            <Actions :id="id" :taskIndex="taskIndex"/>
-            
-            
+            <Actions :id="id" :taskIndex="taskIndex"/>                        
+        </span>
         </div>
     </div>
 </template>

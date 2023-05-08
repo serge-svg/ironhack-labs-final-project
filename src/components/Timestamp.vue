@@ -6,5 +6,5 @@
 </script>
 
 <template>
-    <span class="timestamp">{{ timestamp }}</span>
+   <span>Created: </span> {{ timestamp }}
 </template>
