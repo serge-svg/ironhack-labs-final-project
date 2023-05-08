@@ -1,13 +1,11 @@
 <template>
-<div>
-  <h4>Welcome</h4>
-  <h5 v-if="authStore.currentUser"> {{ authStore.currentUser.email }}</h5>
-</div>
+  <div>
+    <h4>Welcome</h4>
+    <h5 v-if="authStore.currentUser">{{ authStore.currentUser.email }}</h5>
+  </div>
 </template>
 
 <script setup>
 import useAuthStore from '@/stores/user'
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 </script>
-
-

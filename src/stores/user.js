@@ -7,19 +7,25 @@ export default defineStore('user', {
   }),
   actions: {
     async fetchUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-      this.currentUser = user;
+      const {
+        data: { user }
+      } = await supabase.auth.getUser()
+      this.currentUser = user
     },
     async signIn(email, password) {
       try {
-        const { data: { user }, error } = await supabase.auth.signInWithPassword({
+        const {
+          data: { user },
+          error
+        } = await supabase.auth.signInWithPassword({
           email,
           password
         })
-        
-        if (error) { throw error }
-        if (user) this.currentUser = user;
-        
+
+        if (error) {
+          throw error
+        }
+        if (user) this.currentUser = user
       } catch (error) {
         this.currentUser = null
         this.error = error.message
@@ -27,22 +33,28 @@ export default defineStore('user', {
     },
     async signUp(email, password) {
       try {
-        const { data: { user } , error } = await supabase.auth.signUp({
+        const {
+          data: { user },
+          error
+        } = await supabase.auth.signUp({
           email,
           password
         })
 
-        if (error) { throw error }
-        if (user) this.currentUser = user;
-
+        if (error) {
+          throw error
+        }
+        if (user) this.currentUser = user
       } catch (error) {
-        this.currentUser = null;
-        this.error = error.message;
+        this.currentUser = null
+        this.error = error.message
       }
     },
     async signOut() {
       const { error } = await supabase.auth.signOut()
-      if (error) { throw error }
+      if (error) {
+        throw error
+      }
       this.currentUser = null
     }
   }
