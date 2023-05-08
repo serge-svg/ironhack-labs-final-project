@@ -1,3 +1,3 @@
 <script setup>
-  const props = defineProps({ taskIndex: Number });
+const props = defineProps({ taskIndex: Number })
 </script>
