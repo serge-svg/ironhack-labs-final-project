@@ -1,9 +1,7 @@
 <template>
-  <div class="hero min-h-screen bg-base-200">
-    <div class="hero-content flex-col lg:flex-row-reverse">
-      <div class="text-center lg:text-left">
-        <h1 class="text-5xl font-bold">Login</h1>
-      </div>
+   <div class="container mx-auto max-w-960">
+    <div class="flex-col lg:flex-row-reverse">
+      <h1 class="text-5xl font-bold text-center my-3">Login</h1>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <form @submit.prevent="handleSignIn">
           <div class="card-body">

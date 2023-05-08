@@ -1,8 +1,8 @@
 <template>
-  <div class="flex">
-    <div class="artboard phone-3">
+  <div class="flex container mx-auto max-w-960">
+    <div class="mx-auto max-w-960">
       <header>
-        <nav class="navbar bg-primary text-primary-content">
+        <nav class="navbar-center bg-primary container mx-auto flex items-center justify-between px-4">
           <RouterLink to="/" class="btn btn-ghost normal-case text-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"

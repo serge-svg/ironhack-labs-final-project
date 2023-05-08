@@ -27,6 +27,7 @@ const handleAddTask = async () => {
   const user_id = ref(authStore.currentUser.id)
   const task = ref({ title, user_id })
   try {
+    console.log('aa')
     await taskStore.add(task.value)
     title.value = ''
   } catch (error) {
