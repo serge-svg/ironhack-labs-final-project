@@ -9,20 +9,19 @@
             <label class="label">
               <span class="label-text">Email</span>
             </label>
-            <input
+            <input id="fEmail"
               v-model="email"
-              type="email"
-              required
               placeholder="email"
               class="input input-bordered"
             />
+            <p id="email_v" style="visibility: hidden; color: red;">Email format invalid!</p>
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text">Password</span>
             </label>
             <input
-              v-model="password"
+              v-model="password1"
               type="password"
               placeholder="password"
               class="input input-bordered"
@@ -37,7 +36,7 @@
               class="input input-bordered"
             />
           </div>
-          <p id="identical" style="visibility: hidden; color: red;">Passwords must be indentical!</p>
+          <p id="password_v" style="visibility: hidden; color: red;">Passwords must be indentical!</p>
           <div class="form-control mt-6">
             <button class="btn btn-primary">Sign up</button>
           </div>
@@ -53,45 +52,78 @@ import { ref } from 'vue'
 import useAuthStore from '@/stores/user'
 
 const authStore = useAuthStore()
+
 const email = ref('')
-const password = ref('')
+const password1 = ref('')
 const password2 = ref('')
 
+const fEmail = document.getElementById("fEmail");
+const email_v = document.getElementById("email_v");
+
+const fPassword1 = document.getElementById("fPassword1");
+const fPassword2 = document.getElementById("fPassword2");
+const password_v = document.getElementById("password_v");
+
+
 const handleSignUp = async () => {
+  _resetForm();
   try {
-    await authStore.signUp(email.value, password.value)
-    document.getElementById("identical").style.color = "green";
-    document.getElementById("identical").innerHTML = 'Success, Verify your email!';
-    document.getElementById("identical").style.visibility = "visible";
+    await authStore.signUp(email.value, password1.value)
+
+    document.getElementById("email_v").innerHTML = "Success, verify your email!";
+    document.getElementById("email_v").style.color = "green";
+    document.getElementById("email_v").style.visibility = "visible";
+    console.log('Success, Verify your email!')
   } catch (error) {
     console.log(error)
   }
 }
 
 function validateForm(){
+  _isValidEmail();
+  _isValidPassword();  
+}
 
-  debugger
+function _isValidEmail() {
+  const isValidEmail = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm.test(email.value)
+  if (!isValidEmail) {
+    document.getElementById("email_v").innerHTML = "Email format invalid!";
+    document.getElementById("email_v").style.color = "red";
+    document.getElementById("email_v").style.visibility = "visible";
+  }
+}
+
+function _isValidPassword() {
   let error = '';
-  document.getElementById("identical").style.color = "red";
-  document.getElementById("identical").innerHTML = error;
-  document.getElementById("identical").style.visibility = "hidden";
-  if (password.value !== password2.value) {
+  if (password1.value !== password2.value) {
     error = 'Passwords must be identical!'
-  } else if(password.value.length < 6) {
+  } else if(password1.value.length < 6) {
     error = 'Password must be 6 characters or longer!'
-  } else if(password.value.length > 20) {
+  } else if(password1.value.length > 20) {
     error = 'Password must be 20 characters or shorter!'
-  } else if(password.value.search(/\d/) == -1) {
+  } else if(password1.value.search(/\d/) == -1) {
     error = 'Password must contain at least one digit!'
-  } else if(password.value.search(/[a-zA-Z]/) == -1) {
+  } else if(password1.value.search(/[a-zA-Z]/) == -1) {
     error = 'Password must contain at least one letter!'
   }
 
   if (!error) {
     handleSignUp();
   } else {
-    document.getElementById("identical").innerHTML = error;
-    document.getElementById("identical").style.visibility = "visible";
+    document.getElementById("password_v").style.visibility = "visible";
+    document.getElementById("password_v").style.color = "red";
+    document.getElementById("password_v").innerHTML = error;
   }
+
+} 
+
+function _resetForm() {
+  email.value = ''
+  password1.value = ''
+  password2.value = ''
+  document.getElementById("password_v").innerHTML = "";
+  document.getElementById("password_v").style.color = "green";
+  document.getElementById("password_v").style.visibility = "hidden";
 }
+
 </script>
