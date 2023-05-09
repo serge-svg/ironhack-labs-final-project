@@ -8,7 +8,7 @@
             <div v-if="isEditing" class="flex gap-2">
                 <input type="text" v-model="newTitle" 
                 class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="introduce a task" required />
-                <button @click="handleSave()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-2 py-1">
+                <button @click="handleSave()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold rounded px-2 py-1">
                 Save
                 </button>
             </div>    
@@ -19,8 +19,6 @@
                 <i class="fas fa-edit cursor-pointer" @click="handleEdit()"></i>
                 <i class="fas fa-trash cursor-pointer" @click="handleDelete()"></i>
             </div>
-            id:{{ id }}
-            index:{{ taskIndex }}
         </div>  
     <hr>    
   </div>

@@ -1,7 +1,6 @@
 <template>
   <div class="tasks">
     <div to-do-items>
-      <p v-if="tasks.length === 0">No items to display.</p>
 
       <div v-for="(task, index) in tasks" :key="index">
         <Task class="ml-4"
@@ -25,7 +24,8 @@ const tasks = ref([])
 const taskStore = useTaskStore()
 
 async function getTask() {
-  tasks.value = await taskStore.fetchTasks()
+  console.log(`getTask`)
+  tasks.value = await taskStore.fetchTasks();
 }
 
 getTask()
