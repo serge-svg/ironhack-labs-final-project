@@ -53,7 +53,6 @@ const email = ref('')
 const password = ref('')
 
 const handleSignIn = async () => {
-  _resetForm();
   try {
     await authStore.signIn(email.value, password.value)
     router.push('/')
@@ -62,7 +61,7 @@ const handleSignIn = async () => {
     document.getElementById("password_v").style.visibility = "visible";
     document.getElementById("password_v").style.color = "red";
     document.getElementById("password_v").innerHTML = error.message;
-
+    _resetForm();
   }
 }
 
@@ -108,7 +107,6 @@ function _isValidPassword() {
 function _resetForm() {
   email.value = ''
   password.value = ''  
-  document.getElementById("password_v").style.visibility = "hidden";
   document.getElementById("email_v").style.visibility = "hidden";
 }
 

@@ -2,7 +2,7 @@
   <div class="tasks">
     <div to-do-items>
 
-      <div v-for="(task, index) in tasks" :key="index">
+      <div v-for="(task, index) in taskStore.tasksList" :key="index">
         <Task class="ml-4"
           :id="task.id"
           :taskIndex="index"
@@ -18,14 +18,16 @@
 <script setup>
 import Task from '@/components/Task.vue'
 import useTaskStore from '@/stores/task'
-import { ref } from 'vue'
 
-const tasks = ref([])
-const taskStore = useTaskStore()
+const taskStore = useTaskStore();
 
 async function getTask() {
-  console.log(`getTask`)
-  tasks.value = await taskStore.fetchTasks();
+  try {
+    await taskStore.fetchTasks();
+
+  } catch (error) {
+    console.log('Error on fetchtask:', error.message);
+  }
 }
 
 getTask()

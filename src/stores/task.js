@@ -10,29 +10,45 @@ export default defineStore({
     async fetchTasks() {
       const { data, error } = await supabase.from('tasks').select('*')
 
-      if (error) { throw error }
+      if (error) { 
+        console.log(`error: ${error}`); 
+        throw error 
+      }
 
-      this.tasksList = data;     
-
+      this.tasksList = data;      
     },
     async add(task) {
-      console.log('aaA')
       const { data, error } = await supabase.from('tasks').insert([task]).select()
 
-      if (error) { throw error }
-      this.tasksList.push(data[0]);
+      if (error) { 
+        console.log(`error: ${error}`); 
+        throw error 
+      }
+
+      this.tasksList.unshift(data[0]);
+
     },
     async delete(id, taskIndex) {
       const { error } = await supabase.from('tasks').delete().eq('id', id)
 
-      if (error) { throw error }
+      if (error) { 
+        console.log(`error: ${error}`); 
+        throw error 
+      }
 
       this.tasksList.splice(taskIndex, 1);
     },
     async update(id, newTitle) {
       const { error } = await supabase.from('tasks').update({ title: newTitle }).eq('id', id)
 
-      if (error) { throw error }
+      if (error) { 
+        console.log(`error: ${error}`); 
+        throw error;
+      }
+
+      const index = this.tasksList.findIndex(task => task.id === id);
+      console.log(index);
+      this.tasksList[index].title = newTitle;   
     }
   }
 })

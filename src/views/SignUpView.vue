@@ -65,8 +65,7 @@ const fPassword2 = document.getElementById("fPassword2");
 const password_v = document.getElementById("password_v");
 
 
-const handleSignUp = async () => {
-  _resetForm();
+const handleSignUp = async () => {  
   try {
     await authStore.signUp(email.value, password1.value)
 
@@ -76,6 +75,7 @@ const handleSignUp = async () => {
     console.log('Success, Verify your email!')
   } catch (error) {
     console.log(error)
+    _resetForm();
   }
 }
 

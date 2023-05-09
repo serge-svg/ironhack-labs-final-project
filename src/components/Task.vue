@@ -13,7 +13,7 @@
                 </button>
             </div>    
             
-            <div v-else><p>{{ newTitle }}</p></div>
+            <div v-else><p>{{ title }}</p></div>
 
             <div class="flex gap-2 items-center my-4">
                 <i class="fas fa-edit cursor-pointer" @click="handleEdit()"></i>
@@ -43,7 +43,6 @@ const props = defineProps({
 async function handleSave() {
   try {
     await taskStore.update(props.id, newTitle.value);
-    newTitle.value = newTitle.value;
     isEditing.value = !isEditing.value;
   } catch (error) {
     console.log('Error saving task:', error);
@@ -62,4 +61,5 @@ function handleEdit() {
     if (!newTitle.value) newTitle.value = props.title;
     isEditing.value = !isEditing.value;
 }
+
 </script>
