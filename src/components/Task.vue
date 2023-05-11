@@ -5,6 +5,9 @@
         </div>
         
         <div class="flex justify-between items-center">
+          <div class="flex flex-start gap-2 items-center">
+            <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 align-center" />
+          
             <div v-if="isEditing" class="flex gap-2">
                 <input type="text" v-model="newTitle" 
                 class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="introduce a task" required />
@@ -14,11 +17,12 @@
             </div>    
             
             <div v-else><p>{{ title }}</p></div>
+          </div>
 
-            <div class="flex gap-2 items-center my-4">
-                <i class="fas fa-edit cursor-pointer" @click="handleEdit()"></i>
-                <i class="fas fa-trash cursor-pointer" @click="handleDelete()"></i>
-            </div>
+          <div class="flex gap-2 items-center my-4">
+              <i class="fas fa-edit cursor-pointer" @click="handleEdit()"></i>
+              <i class="fas fa-trash cursor-pointer" @click="handleDelete()"></i>
+          </div>
         </div>  
     <hr>    
   </div>
