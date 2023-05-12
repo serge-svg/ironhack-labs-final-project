@@ -9,7 +9,7 @@ const router = createRouter({
   routes: [    
     {
       path: '/',
-      name: 'signIn',
+      name: '',
       meta: { requiresAuth: false },
       component: SignInView
     },
