@@ -1,8 +1,7 @@
 <template>
-  <div class="flex container mx-auto max-w-960">
-    <div class="mx-auto max-w-960">
-      <header>
-        <nav class="navbar-center bg-primary container mx-auto flex items-center justify-between px-4">
+  <div class="max-w-960 mx-auto">
+    <div class="flex-col items-center">
+        <nav class="navbar-center flex justify-between bg-primary container mx-auto px-4">
           <RouterLink to="/" class="btn btn-ghost normal-case text-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +45,6 @@
             Sign out
           </button>
         </nav>
-      </header>
       <RouterView />
     </div>
   </div>
@@ -64,3 +62,10 @@ function signOut() {
   router.push('/')
 }
 </script>
+
+<style scoped>
+.main-container {
+  width: 100%;
+  max-width: 960px !important;
+}
+</style>

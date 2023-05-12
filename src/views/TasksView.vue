@@ -1,9 +1,7 @@
 <template>
-  <div class="container">
     <AddTask />
     <hr class="m-3" />
     <TasksList />
-  </div>
 </template>
 
 <script setup>
