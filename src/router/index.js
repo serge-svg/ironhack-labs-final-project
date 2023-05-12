@@ -6,18 +6,24 @@ import TasksView from '@/views/TasksView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+  routes: [    
     {
-      path: '/sign-up',
-      name: 'signUp',
+      path: '/',
+      name: 'signIn',
       meta: { requiresAuth: false },
-      component: SignUpView
+      component: SignInView
     },
     {
       path: '/sign-in',
       name: 'signIn',
       meta: { requiresAuth: false },
       component: SignInView
+    },
+    {
+      path: '/sign-up',
+      name: 'signUp',
+      meta: { requiresAuth: false },
+      component: SignUpView
     },
     {
       path: '/tasks-list',

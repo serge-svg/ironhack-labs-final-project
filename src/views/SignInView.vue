@@ -25,7 +25,7 @@
                 class="input input-bordered"
               />
               <label class="label">
-                <a href="/sign-up" class="label-text-alt link link-hover">Create account?</a>
+                <a href="/sign-up" class="label-text-alt link link-hover">Create an account?</a>
               </label>
               <p id="password_v" style="visibility: hidden; color: red;">Password invalid!</p>
             </div>
