@@ -55,7 +55,7 @@ import useTaskStore from '@/stores/task'
 const taskStore = useTaskStore()
 const isEditing = ref(props.editing)
 const newTitle = ref(props.title)
-const completed = ref(props.status)
+let completed = ref(props.status)
 let completed_at = ref(props.completed_at)
 
 const props = defineProps({
@@ -92,10 +92,10 @@ function handleEdit() {
 
 async function handleStatus() {
   const newStatus = completed.value ? false : true;
-  completed_at = newStatus ? new Date().toISOString() : null;
+  const completed_at1 = newStatus ? new Date().toISOString() : null;
 
   try {
-    await taskStore.updateStatus(props.id, newStatus, completed_at)
+    await taskStore.updateStatus(props.id, newStatus, completed_at1)
   } catch (error) {
     console.log('Error saving task:', error)
   }

@@ -21,7 +21,7 @@
             class="input input-bordered"
           />
           <label class="label">
-            <a href="/sign-up" class="label-text-alt link link-hover">Create an account?</a>
+            <button type="button" @click="handleSignUp" class="label-text-alt link link-hover">Create an account?</button>
           </label>
           <p id="password_v" style="visibility: hidden; color: red">Password invalid!</p>
         </div>
@@ -44,6 +44,10 @@ import router from '../router'
 const authStore = useAuthStore()
 const email = ref('')
 const password = ref('')
+
+const handleSignUp = async () => {
+  router.push('/sign-up')
+}
 
 const handleSignIn = async () => {
   try {
