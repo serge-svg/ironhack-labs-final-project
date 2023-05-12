@@ -1,30 +1,8 @@
 <template>
-  <div class="max-w-960 mx-auto">
-    <div class="flex-col items-center">
-        <nav class="navbar-center flex justify-between bg-primary container mx-auto px-4">
-          <RouterLink to="/" class="btn btn-ghost normal-case text-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
-            Home
-          </RouterLink>
-          <RouterLink
-            to="/sign-up"
-            v-if="!authStore.currentUser"
-            class="btn btn-ghost normal-case text-xl"
-            >Sign Up</RouterLink
-          >
+    <div class="flex-col items-center ">
+        <nav class="navbar-center flex justify-between bg-primary mx-auto px-4 w-1/2">
+          <i class="fas fa-list flex items-center"></i>           
+
           <RouterLink
             to="/sign-in"
             v-if="!authStore.currentUser"
@@ -47,7 +25,6 @@
         </nav>
       <RouterView />
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -59,7 +36,7 @@ const authStore = useAuthStore()
 
 function signOut() {
   authStore.signOut()
-  router.push('/')
+  router.push('/sign-in')
 }
 </script>
 

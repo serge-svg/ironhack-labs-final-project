@@ -1,10 +1,8 @@
 <template>
-   <div class="container mx-auto max-w-960">
-    <div class="flex-col lg:flex-row-reverse">
+    <div class="flex flex-col items-center">
       <h1 class="text-5xl font-bold text-center my-3">Register</h1>
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body shadow-2xl bg-base-100 w-1/2">
         <form @submit.prevent="validateForm">
-          <div class="card-body">
           <div class="form-control">
             <label class="label">
               <span class="label-text">Email</span>
@@ -40,10 +38,8 @@
           <div class="form-control mt-6">
             <button class="btn btn-primary">Sign up</button>
           </div>
-        </div>
         </form>
       </div>
-    </div>
   </div>
 </template>
 

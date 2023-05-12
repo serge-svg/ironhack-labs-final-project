@@ -1,10 +1,8 @@
 <template>
-   <div class="container mx-auto max-w-960">
-    <div class="flex-col lg:flex-row-reverse">
+    <div class="flex flex-col items-center">
       <h1 class="text-5xl font-bold text-center my-3">Login</h1>
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body shadow-2xl bg-base-100 w-1/2">
         <form @submit.prevent="validateForm">
-          <div class="card-body">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Email</span>
@@ -27,18 +25,17 @@
                 class="input input-bordered"
               />
               <label class="label">
-                <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                <a href="/sign-up" class="label-text-alt link link-hover">Create account?</a>
               </label>
               <p id="password_v" style="visibility: hidden; color: red;">Password invalid!</p>
             </div>
             <div class="form-control mt-6">
               <button class="btn btn-primary">Login</button>
             </div>
-          </div>
         </form>
       </div>
     </div>
-  </div>
+  
   <RouterLink to="/sign-up" />
 </template>
 
@@ -55,7 +52,7 @@ const password = ref('')
 const handleSignIn = async () => {
   try {
     await authStore.signIn(email.value, password.value)
-    router.push('/')
+    router.push('/tasks-list')
   } catch (error) {
     console.log('Error on sign in process:', error)
     document.getElementById("password_v").style.visibility = "visible";
