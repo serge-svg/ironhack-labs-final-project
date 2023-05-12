@@ -91,11 +91,11 @@ function handleEdit() {
 }
 
 async function handleStatus() {
-  const newStatus = completed.value ? false : true
-  completed_at = completed ? new Date().toISOString() : null
+  const newStatus = completed.value ? false : true;
+  completed_at = newStatus ? new Date().toISOString() : null;
 
   try {
-    await taskStore.updateStatus(props.id, newStatus)
+    await taskStore.updateStatus(props.id, newStatus, completed_at)
   } catch (error) {
     console.log('Error saving task:', error)
   }
