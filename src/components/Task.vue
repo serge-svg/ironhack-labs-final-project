@@ -1,7 +1,10 @@
 <template>
   <div class="text-center w-1/2 px-5 py-3">
-        <div class="flex gap-2 items-center mt-1">
-            <p>Created:</p> {{ timestamp }}
+        <div class="flex gap-2 justify-between items-center mt-1">
+            <p>Created:</p> {{ created_at }}
+        </div>
+        <div v-if="completed" class="flex gap-2 justify-between items-center mt-1">
+            <p>Completed:</p> {{ completed_at }}
         </div>
         
         <div class="flex justify-between items-center">
@@ -16,7 +19,7 @@
                 </button>
             </div>    
             
-            <div v-else><p>{{ title }}</p></div>
+            <div v-else><p id="task-desc">{{ title }}</p></div>
           </div>
 
           <div class="flex gap-2 items-center my-4">
@@ -36,14 +39,16 @@ const taskStore = useTaskStore();
 const isEditing = ref(props.editing);
 const newTitle = ref(props.title);
 const completed = ref(props.status);
+let completed_at = ref(props.completed_at);
 
 const props = defineProps({
   id: Number,
   taskIndex: Number,
-  timestamp: String,
+  created_at: String,
   title: String,  
   editing: Boolean,
-  status: Boolean
+  status: Boolean,
+  completed_at: String
 });
 
 async function handleSave() {
@@ -70,9 +75,16 @@ function handleEdit() {
 
 async function handleStatus() {
   const newStatus = completed.value ? false : true;
+  completed_at = completed ? new Date().toISOString() : null;
+
   try {
     await taskStore.updateStatus(props.id, newStatus);
-    
+    /*
+    if (newStatus) {
+      //document.getElementById("task-desc").style.textDecoration = "line-through"; 
+      completed_at = taskList[props.taskIndex].completed_at;
+    } */
+
   } catch (error) {
     console.log('Error saving task:', error);
   }
