@@ -1,18 +1,9 @@
 <template>
-  <div class="tasks">
-    <div to-do-items>
-
-      <div v-for="(task, index) in taskStore.tasksList" :key="index">
-        <Task class="ml-4"
-          :id="task.id"
-          :taskIndex="index"
-          :timestamp="task.inserted_at"
-          :title="task.title"
-          :edited="task.editing"
-        />
-      </div>
-    </div>
-  </div>
+  <div class="max-w-960 text-center">
+      <Task v-for="(task, index) in taskStore.tasksList" :key="index" :id="task.id" :taskIndex="index"
+        :timestamp="task.inserted_at" :title="task.title" :edited="task.editing" :status="task.is_complete" 
+      />
+  </div>  
 </template>
 
 <script setup>

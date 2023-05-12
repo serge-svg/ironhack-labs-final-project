@@ -1,16 +1,18 @@
 <template>
-  <form @submit.prevent="validateForm" class="flex items-center m-4">
-    <input 
-      id="title"
-      v-model="title"
-      type="text"
-      placeholder="Add thing to do" 
-      class="border rounded px-4 py-2 mr-2" 
-    />
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-4 py-2">
-      Add
-    </button>
-  </form>
+  <div class="max-w-960 text-center my-4">
+    <form @submit.prevent="validateForm">
+      <input 
+        id="title"
+        v-model="title"
+        type="text"
+        placeholder="Add thing to do" 
+        class="border rounded px-4 py-2 mr-2 w-1/2" 
+      />
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-4 py-2">
+        Add
+      </button>
+    </form>
+   </div>
 </template>
 
 <script setup>
