@@ -1,12 +1,12 @@
 <template>
-  <div class="max-w-960 text-center my-4">
+  <div class="text-center my-4">
     <form @submit.prevent="validateForm">
       <input 
         id="title"
         v-model="title"
         type="text"
         placeholder="Add thing to do" 
-        class="border rounded px-4 py-2 mr-2 w-1/2" 
+        class="border rounded px-4 py-2 mr-2 w-1/3" 
       />
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-4 py-2">
         Add

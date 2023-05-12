@@ -1,7 +1,6 @@
 <template>
-  <div class="max-w-960 mx-auto">
     <div class="flex-col items-center">
-        <nav class="navbar-center flex justify-between bg-primary container mx-auto px-4">
+        <nav class="navbar-center flex justify-between bg-primary mx-auto px-4 w-1/2">
           <RouterLink to="/" class="btn btn-ghost normal-case text-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +46,6 @@
         </nav>
       <RouterView />
     </div>
-  </div>
 </template>
 
 <script setup>

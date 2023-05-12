@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-960 text-center">
+  <div class="flex flex-col items-center">
       <Task v-for="(task, index) in taskStore.tasksList" :key="index" :id="task.id" :taskIndex="index"
         :timestamp="task.inserted_at" :title="task.title" :edited="task.editing" :status="task.is_complete" 
       />

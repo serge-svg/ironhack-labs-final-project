@@ -1,16 +1,16 @@
 <template>
-  <div class="max-w-960 text-center w-1/2">
+  <div class="text-center w-1/2 px-5">
         <div class="flex gap-2 items-center mt-1">
             <p>Created:</p> {{ timestamp }}
         </div>
         
         <div class="flex justify-between items-center">
-          <div class="flex flex-start gap-2 items-center">
+          <div class="flex flex-start gap-2 items-center w-full">
             <input v-model="completed" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 align-center" @click="handleStatus" />
 
-            <div v-if="isEditing" class="flex gap-2">
+            <div v-if="isEditing" class="flex gap-2 w-full">
                 <input type="text" v-model="newTitle" 
-                class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="introduce a task" required />
+                class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-full" placeholder="introduce a task" required />
                 <button @click="handleSave()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold rounded px-2 py-1 mr-2">
                 Save
                 </button>
