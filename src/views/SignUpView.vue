@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col items-center">
       <h1 class="text-5xl font-bold text-center my-3">Register</h1>
-      <div class="card-body shadow-2xl bg-base-100">
+      <div class="card-body shadow-2xl bg-base-100 w-1/2">
         <form @submit.prevent="validateForm">
           <div class="form-control">
             <label class="label">

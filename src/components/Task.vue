@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center w-1/2 px-5">
+  <div class="text-center w-1/2 px-5 py-3">
         <div class="flex gap-2 items-center mt-1">
             <p>Created:</p> {{ timestamp }}
         </div>

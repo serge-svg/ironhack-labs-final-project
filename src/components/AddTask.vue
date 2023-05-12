@@ -1,5 +1,10 @@
 <template>
-  <div class="text-center my-4">
+  <div class="text-center my-2">
+    <div class="flex items-center justify-between mx-auto px-1 w-1/2">    
+      <h4 v-if="authStore.currentUser">Welcome</h4>
+      <h5 v-if="authStore.currentUser">{{ authStore.currentUser.email }}</h5>
+    </div>
+    <hr class="flex mx-auto items-center my-2 w-1/2"/>
     <form @submit.prevent="validateForm">
       <input 
         id="title"
