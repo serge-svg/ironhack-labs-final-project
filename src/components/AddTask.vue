@@ -1,23 +1,23 @@
 <template>
   <div class="text-center my-2">
-    <div class="flex items-center justify-between mx-auto px-1 w-1/2">    
+    <div class="flex items-center justify-between mx-auto px-1 w-1/2">
       <h4 v-if="authStore.currentUser">Welcome</h4>
       <h5 v-if="authStore.currentUser">{{ authStore.currentUser.email }}</h5>
     </div>
-    <hr class="flex mx-auto items-center my-2 w-1/2"/>
+    <hr class="flex mx-auto items-center my-2 w-1/2" />
     <form @submit.prevent="validateForm">
-      <input 
+      <input
         id="title"
         v-model="title"
         type="text"
-        placeholder="Add thing to do" 
-        class="border rounded px-4 py-2 mr-2 w-1/3" 
+        placeholder="Add thing to do"
+        class="border rounded px-4 py-2 mr-2 w-1/3"
       />
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded px-4 py-2">
         Add
       </button>
     </form>
-   </div>
+  </div>
 </template>
 
 <script setup>
@@ -41,13 +41,13 @@ const handleAddTask = async () => {
   }
 }
 
-function validateForm(){
+function validateForm() {
   console.log('validateForm')
   if (title.value === '') {
     console.log('empty title')
   } else {
     console.log('ok')
-    handleAddTask();
+    handleAddTask()
   }
 }
 </script>
