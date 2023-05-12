@@ -1,85 +1,48 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div class="flex-col items-center ">
+        <nav class="navbar-center flex justify-between bg-primary mx-auto px-4 w-1/2">
+          <i class="fas fa-list flex items-center"></i>           
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+          <RouterLink
+            to="/sign-in"
+            v-if="!authStore.currentUser"
+            class="btn btn-ghost normal-case text-xl"
+            >Sign In</RouterLink
+          >
+          <RouterLink
+            to="/tasks-list"
+            v-if="authStore.currentUser"
+            class="btn btn-ghost normal-case text-xl"
+            >Tasks</RouterLink
+          >
+          <button
+            v-if="authStore.currentUser"
+            @click="signOut"
+            class="btn btn-ghost normal-case text-xl"
+          >
+            Sign out
+          </button>
+        </nav>
+      <RouterView />
     </div>
-  </header>
-
-  <RouterView />
 </template>
 
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import useAuthStore from '@/stores/user'
+import router from '@/router'
+
+const authStore = useAuthStore()
+
+function signOut() {
+  authStore.signOut()
+  router.push('/sign-in')
+}
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.main-container {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+  max-width: 960px !important;
 }
 </style>
