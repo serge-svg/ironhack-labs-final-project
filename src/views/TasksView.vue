@@ -1,7 +1,7 @@
 <template>
-    <AddTask />
-    <hr class="flex mx-auto items-center w-1/2" />
-    <TasksList />
+  <AddTask />
+  <hr class="flex mx-auto items-center w-1/2" />
+  <TasksList />
 </template>
 
 <script setup>
