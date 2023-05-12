@@ -35,19 +35,17 @@ const handleAddTask = async () => {
 
   try {
     await taskStore.add(task.value)
-    title.value = ''
+    title.value = '';
   } catch (error) {
-    console.log('Error creating a task:', error)
+    console.log('Error creating a task:', error);
   }
 }
 
 function validateForm() {
-  console.log('validateForm')
-  if (title.value === '') {
-    console.log('empty title')
+  if (title.value === '' || title.value.length < 3) {
+    alert('Description is required and must be at least 3 characters long');
   } else {
-    console.log('ok')
-    handleAddTask()
+    handleAddTask();
   }
 }
 </script>
