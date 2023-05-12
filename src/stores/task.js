@@ -49,8 +49,8 @@ export default defineStore({
       const index = this.tasksList.findIndex(task => task.id === id);
       this.tasksList[index].title = newTitle;   
     },
-    async updateStatus(id, completed) {
-      const { error } = await supabase.from('tasks').update({ is_complete: completed }).eq('id', id)
+    async updateStatus(id, completed, updated_at) {
+      const { error } = await supabase.from('tasks').update({ is_complete: completed, completed_at: updated_at }).eq('id', id)
 
       if (error) { 
         console.log(`error: ${error}`); 
@@ -58,7 +58,8 @@ export default defineStore({
       }
 
       const index = this.tasksList.findIndex(task => task.id === id);
-      this.tasksList[index].is_complete = completed;   
+      this.tasksList[index].is_complete = completed;
+      this.tasksList[index].completed_at = updated_at;
     }
   }
 })
